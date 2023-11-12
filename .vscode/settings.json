@@ -1,0 +1,21 @@
+{
+	"files.associations": {
+		"*.txt": "dnh",
+		"ficha_4_0.h": "c",
+		"utility.h": "c",
+		"u_input.h": "c",
+		"stdbool.h": "c",
+		"stdlib.h": "c",
+		"stdio.h": "c",
+		"fichas.h": "c",
+		"ficha_3_1.h": "c",
+		"ficha_2_1.h": "c",
+		"ficha_2_0.h": "c",
+		"ficha_1_0.h": "c",
+		"ficha_1_1.h": "c",
+		"ficha_3_0.h": "c",
+		"unistd.h": "c",
+		"conio.h": "c",
+		"u_console.h": "c"
+	}
+}
