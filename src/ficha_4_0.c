@@ -20,6 +20,7 @@ void ficha_4_0_ex_1()
     int resultado;
     // Notificar ao utilizador as intrucoes de utilizado do programa
 
+    console_clear();
     printf("-----------------------------------\n"
            "|Escreva um valor inteiro:        |\n"
            "|                                 |\n"
@@ -55,6 +56,8 @@ void ficha_4_0_ex_1()
 
     // Apresentar o resultado
     printf("O seu resultado e %d\n", resultado);
+
+    console_pause();
 }
 
 // --------------- Descrição ---------------
@@ -79,6 +82,7 @@ void ficha_4_0_ex_2()
     char categoria[FICHA_4_0_STRING_SIZE];
     int  idade;
     
+    console_clear();
     // Notificar ao utilizador as intrucoes de utilizado do programa
     printf("Escreva o seu nome e a sua idade para saber a sua categoria\n\n");
     input_get_string("Digite o seu nome: ", nome, FICHA_4_0_STRING_SIZE);
@@ -93,10 +97,11 @@ void ficha_4_0_ex_2()
         strcpy(categoria, "Junior");
     if ((idade >= 21) && (idade <= 25))
         strcpy(categoria, "Profissional");
-    if ((idade < 5) && (idade > 25))
+    if ((idade < 5) || (idade > 25))
         strcpy(categoria, "Nao definida");
    
     printf("A sua categoria é %s\n", categoria);
+    console_pause();
 }
 
 // --------------- Descricao ---------------
@@ -115,7 +120,7 @@ void ficha_4_0_ex_3()
     float valor_venda;
     float novo_preco;
 
-    
+    console_clear();
     printf("Tipos de venda:\n"
            " 1 - Venda a pronto - desconto de 10%\n"
            " 2 - Venda a Prazo 30 dias - desconto de 5%\n"
@@ -152,6 +157,8 @@ void ficha_4_0_ex_3()
     }
 
     printf("Novo Preco: %.2f EUR\n", novo_preco);
+
+    console_pause();
 }
 
 void ficha_4_0_menu()
@@ -160,6 +167,7 @@ void ficha_4_0_menu()
 
     do
     {
+        console_clear();
         printf("\n\n ####### Ficha 4.0 #######\n\n");
         printf("Bem vindo à Ficha 4.0.\nInsira o número de um dos exercícios, ou zero(0) para sair.\n\n");
         printf("  1 - Calculadora Basica\n");
@@ -203,6 +211,6 @@ void ficha_4_0_menu()
             break;
         }
     } while(opcao != 0);
-
+    console_pause();
     printf("\n ##### Fim Ficha 4.0 #####\n\n");
 }
