@@ -8,7 +8,7 @@ setlocal enabledelayedexpansion
 if "%1"=="-v" (
 	echo Copyright ^(c^) Anri17
 	echo All Rights Reserved
-	echo Build Script - v0.1.0
+	echo Build - v1.0
 	goto quit
 )
 if "%1"=="?" goto help
@@ -17,6 +17,9 @@ if /i "%1"=="release" (
 	goto build_release
 )
 if /i "%1"=="debug" (
+	goto build_debug
+)
+if /i "%1"=="release" (
 	goto build_debug
 )
 if /i "%1"=="clear" (
@@ -32,7 +35,7 @@ goto quit
 echo Accepted Arguments:
 echo help, ?         Display this help message
 echo -v              Display copyright information and the script version
-echo release         Builds a optimizsed executable for release (NOT IMPLEMENTED YET. DOES NOTHING AT THE MOMENT)
+echo release         Builds a optimizsed executable for release
 echo debug           Builds an executable with '-g3' flag for debugging purposes with dgb
 echo clear           Clear the project folder
 goto quit
@@ -47,8 +50,9 @@ echo 0) [SUCCESS] CLEARING COMPLETE!
 goto quit
 
 
-:: Create output directory
+
 :build_debug
+:: Create output directory
 echo 1) CREATING DIRECTORIES...
 if not exist obj\debug\ (
 	echo creating directory: obj\debug\
@@ -100,6 +104,66 @@ for /r %%x in (dependencies\*) do (
 echo 4) [SUCCESS] COPYING DEPENDENCIES COMPLETE!
 echo ----- DONE -----
 GOTO quit
+
+
+
+:build_release
+:: Create output directory
+echo 1) CREATING DIRECTORIES...
+if not exist obj\release\ (
+	echo creating directory: obj\release\
+	mkdir obj\release\
+)
+for /f "tokens=* usebackq delims=" %%x in ("srcdirs.txt") do (
+	if not exist obj\release\%%x (
+		echo creating directory: obj\release\%%x
+		mkdir obj\release\%%x
+	)	
+)
+if not exist bin\release\ (
+	echo creating directory: bin\release\
+	mkdir bin\release\
+)
+echo 1) [SUCCESS] CREATING DIRECTORIES COMPLETE!
+
+
+:: Compile each source file into object files
+echo 2) COMPILING...
+for /f "tokens=* usebackq delims=" %%x in ("srcfiles.txt") do (
+	if not exist "obj\release\%%x.o" (
+		echo compiling: %%x.c
+		gcc -O3 -c "src\%%x.c" -o "obj\release\%%x.o"
+	)
+)
+echo 2) [SUCCESS] COMPILING COMPLETE!
+
+
+:: Link object files and libraries
+echo 3) LINKING...
+set objs=
+for /f "tokens=* usebackq delims=" %%x in ("srcfiles.txt") do (
+	set objs=!objs! "obj\release\%%x.o"
+)
+gcc -O3 %objs% -o "bin\release\Programacao e Algoritmia.exe"
+echo 3) [SUCCESS] LINKING COMPLETE!
+
+
+:: Copy dependencies files
+echo 4) COPYING DEPENDENCIES...
+for /r %%x in (dependencies\*) do (
+	if exist dependencies\%%~nx (
+		if not exist bin\release\%%~nx (
+			copy %%x bin\release\	
+		)
+	)
+)
+echo 4) [SUCCESS] COPYING DEPENDENCIES COMPLETE!
+echo ----- DONE -----
+GOTO quit
+
+
+
+
 
 
 :build_release

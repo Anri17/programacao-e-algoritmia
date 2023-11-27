@@ -16,6 +16,14 @@
 		"ficha_3_0.h": "c",
 		"unistd.h": "c",
 		"conio.h": "c",
-		"u_console.h": "c"
+		"u_console.h": "c",
+		"sandbox.h": "c",
+		"ficha_6_0.h": "c",
+		"u_print.h": "c",
+		"u_math.h": "c",
+		"limits": "c",
+		"frequencia_1.h": "c",
+		"serie_4.h": "c",
+		"serie_4a.h": "c"
 	}
 }

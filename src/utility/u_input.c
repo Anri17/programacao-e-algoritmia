@@ -73,7 +73,7 @@ void input_get_float(const char* prompt, float* buff)
     fflush(stdin);
     scanf("%f", buff);
 }
-void input_get_float_min(const char* prompt, const char* warning, float* buff, float min)
+void input_get_float_min(const char* prompt, const char* warning, float* buff, const float min)
 {
     do {
         printf(prompt);
@@ -82,7 +82,7 @@ void input_get_float_min(const char* prompt, const char* warning, float* buff, f
         if (!((*buff) >= min)) printf(warning);
     } while (!((*buff) >= min));
 }
-void input_get_float_max(const char* prompt, const char* warning, float* buff, float max)
+void input_get_float_max(const char* prompt, const char* warning, float* buff, const float max)
 {
     do {
         printf(prompt);
@@ -91,7 +91,7 @@ void input_get_float_max(const char* prompt, const char* warning, float* buff, f
         if (!((*buff) <= max)) printf(warning);
     } while (!((*buff) <= max));
 }
-void input_get_float_range(const char* prompt, const char* warning, float* buff, float min, float max)
+void input_get_float_range(const char* prompt, const char* warning, float* buff, const float min, const float max)
 {
     do {
         printf(prompt);

@@ -1,7 +1,10 @@
 main
+sandbox
 ficha
 utility\u_input
 utility\u_console
+utility\u_print
+utility\u_math
 command
 ficha_1_0
 ficha_1_1
@@ -10,3 +13,8 @@ ficha_2_1
 ficha_3_0
 ficha_3_1
 ficha_4_0
+ficha_6_0
+ficha_7_0
+serie_4
+serie_4a
+frequencia_1
